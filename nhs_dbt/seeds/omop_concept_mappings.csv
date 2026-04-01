@@ -1,0 +1,91 @@
+source_code,source_vocabulary,source_description,omop_concept_id,omop_concept_name,omop_domain,omop_vocabulary
+I10,ICD10,Essential primary hypertension,320128,Essential hypertension,Condition,SNOMED
+I21.9,ICD10,Acute myocardial infarction unspecified,312327,Acute myocardial infarction,Condition,SNOMED
+I25.1,ICD10,Atherosclerotic heart disease,318443,Ischemic heart disease,Condition,SNOMED
+I48.9,ICD10,Atrial fibrillation unspecified,313217,Atrial fibrillation,Condition,SNOMED
+I50.0,ICD10,Congestive heart failure,316139,Heart failure,Condition,SNOMED
+I63.9,ICD10,Cerebral infarction unspecified,372924,Cerebral infarction,Condition,SNOMED
+I64,ICD10,Stroke not specified,376713,Cerebrovascular disease,Condition,SNOMED
+E11.9,ICD10,Type 2 diabetes without complications,201826,Type 2 diabetes mellitus,Condition,SNOMED
+E11.7,ICD10,Type 2 diabetes with complications,201826,Type 2 diabetes mellitus,Condition,SNOMED
+E78.0,ICD10,Pure hypercholesterolaemia,432867,Hyperlipidemia,Condition,SNOMED
+J44.1,ICD10,COPD with acute exacerbation,255573,Chronic obstructive lung disease,Condition,SNOMED
+J45.9,ICD10,Asthma unspecified,317009,Asthma,Condition,SNOMED
+J18.1,ICD10,Lobar pneumonia unspecified,255848,Pneumonia,Condition,SNOMED
+J96.0,ICD10,Acute respiratory failure,319049,Respiratory failure,Condition,SNOMED
+C34.9,ICD10,Malignant neoplasm of lung unspecified,258375,Malignant neoplasm of lung,Condition,SNOMED
+C50.9,ICD10,Malignant neoplasm of breast unspecified,137809,Malignant neoplasm of breast,Condition,SNOMED
+C61,ICD10,Malignant neoplasm of prostate,200962,Malignant neoplasm of prostate,Condition,SNOMED
+F32.1,ICD10,Moderate depressive episode,440383,Depressive disorder,Condition,SNOMED
+F41.1,ICD10,Generalised anxiety disorder,441542,Anxiety disorder,Condition,SNOMED
+G30.9,ICD10,Alzheimers disease unspecified,378419,Alzheimer disease,Condition,SNOMED
+N39.0,ICD10,Urinary tract infection,81902,Urinary tract infection,Condition,SNOMED
+N18.3,ICD10,Chronic kidney disease stage 3,443611,Chronic kidney disease stage 3,Condition,SNOMED
+D64.9,ICD10,Anaemia unspecified,439777,Anemia,Condition,SNOMED
+M54.5,ICD10,Low back pain,194133,Low back pain,Condition,SNOMED
+K80.2,ICD10,Gallstones without cholecystitis,196455,Cholelithiasis,Condition,SNOMED
+K21.0,ICD10,GORD with oesophagitis,4089152,Gastroesophageal reflux disease,Condition,SNOMED
+L03.1,ICD10,Cellulitis of limb,134736,Cellulitis,Condition,SNOMED
+R07.9,ICD10,Chest pain unspecified,77670,Chest pain,Condition,SNOMED
+S72.0,ICD10,Fracture of neck of femur,4131908,Fracture of neck of femur,Condition,SNOMED
+A09,ICD10,Infectious gastroenteritis,4291649,Infectious gastroenteritis,Condition,SNOMED
+M17.1,ICD10,Other primary gonarthrosis,80180,Osteoarthritis of knee,Condition,SNOMED
+R10.4,ICD10,Abdominal pain,200219,Abdominal pain,Condition,SNOMED
+B34.9,ICD10,Viral infection unspecified,440029,Viral disease,Condition,SNOMED
+A00,ICD10,Cholera,4344638,Cholera,Condition,SNOMED
+Z51.1,ICD10,Pharmacotherapy for neoplasm,4180628,Chemotherapy,Procedure,SNOMED
+Metformin,RxNorm,Metformin,1503297,metformin,Drug,RxNorm
+Amlodipine,RxNorm,Amlodipine,1332418,amlodipine,Drug,RxNorm
+Ramipril,RxNorm,Ramipril,1334456,ramipril,Drug,RxNorm
+Bisoprolol,RxNorm,Bisoprolol,1338005,bisoprolol,Drug,RxNorm
+Atorvastatin,RxNorm,Atorvastatin,1545958,atorvastatin,Drug,RxNorm
+Salbutamol,RxNorm,Salbutamol,1154070,albuterol,Drug,RxNorm
+Omeprazole,RxNorm,Omeprazole,948078,omeprazole,Drug,RxNorm
+Levothyroxine,RxNorm,Levothyroxine,1501700,levothyroxine,Drug,RxNorm
+Warfarin,RxNorm,Warfarin,1310149,warfarin,Drug,RxNorm
+Paracetamol,RxNorm,Paracetamol,1125315,acetaminophen,Drug,RxNorm
+Co-codamol,RxNorm,Co-codamol,1201620,codeine / acetaminophen,Drug,RxNorm
+Amoxicillin,RxNorm,Amoxicillin,1713332,amoxicillin,Drug,RxNorm
+Doxycycline,RxNorm,Doxycycline,1738521,doxycycline,Drug,RxNorm
+Furosemide,RxNorm,Furosemide,956874,furosemide,Drug,RxNorm
+Sertraline,RxNorm,Sertraline,739138,sertraline,Drug,RxNorm
+Apixaban,RxNorm,Apixaban,43013024,apixaban,Drug,RxNorm
+Insulin Lantus,RxNorm,Insulin Glargine,46275076,insulin glargine,Drug,RxNorm
+Prednisolone,RxNorm,Prednisolone,1551099,prednisolone,Drug,RxNorm
+Codeine,RxNorm,Codeine,1201620,codeine,Drug,RxNorm
+Clopidogrel,RxNorm,Clopidogrel,1322184,clopidogrel,Drug,RxNorm
+W37.1,OPCS4,Primary total hip replacement using cement,4148525,Total hip replacement,Procedure,SNOMED
+W38.1,OPCS4,Primary total hip replacement not using cement,4148525,Total hip replacement,Procedure,SNOMED
+W40.1,OPCS4,Primary total knee replacement using cement,4222658,Total knee replacement,Procedure,SNOMED
+K22.2,OPCS4,Laparoscopic cholecystectomy,4236738,Laparoscopic cholecystectomy,Procedure,SNOMED
+G45.1,OPCS4,Upper GI endoscopy,4100555,Esophagogastroduodenoscopy,Procedure,SNOMED
+H22.9,OPCS4,Colonoscopy,4249893,Colonoscopy,Procedure,SNOMED
+K63.1,OPCS4,PCI coronary artery,4336464,Percutaneous coronary intervention,Procedure,SNOMED
+K49.1,OPCS4,CABG,4221207,Coronary artery bypass graft,Procedure,SNOMED
+E85.1,OPCS4,Insertion of lens prosthesis,4180248,Cataract surgery,Procedure,SNOMED
+T46.2,OPCS4,Central venous catheter insertion,4196391,Central venous catheterization,Procedure,SNOMED
+Y53.1,OPCS4,General anaesthetic,4305627,General anesthesia,Procedure,SNOMED
+X29.2,OPCS4,CT chest,4058286,CT of chest,Procedure,SNOMED
+B27.5,OPCS4,CT head,4306292,CT of head,Procedure,SNOMED
+U05.1,OPCS4,Emergency caesarean section,4128030,Cesarean section,Procedure,SNOMED
+U21.2,OPCS4,Induction of labour,4128366,Induction of labor,Procedure,SNOMED
+FBC-HB,LOINC,Haemoglobin,3000963,Hemoglobin,Measurement,LOINC
+FBC-WCC,LOINC,White Cell Count,3010813,White blood cell count,Measurement,LOINC
+FBC-PLT,LOINC,Platelet Count,3024929,Platelet count,Measurement,LOINC
+UREA,LOINC,Urea,3013682,Urea nitrogen,Measurement,LOINC
+CREAT,LOINC,Creatinine,3016723,Creatinine,Measurement,LOINC
+EGFR,LOINC,eGFR,3049187,Glomerular filtration rate,Measurement,LOINC
+NA,LOINC,Sodium,3019550,Sodium,Measurement,LOINC
+K,LOINC,Potassium,3023103,Potassium,Measurement,LOINC
+ALT,LOINC,ALT,3006923,ALT,Measurement,LOINC
+ALP,LOINC,ALP,3035995,ALP,Measurement,LOINC
+BILI,LOINC,Bilirubin,3024128,Bilirubin,Measurement,LOINC
+CRP,LOINC,CRP,3020460,C reactive protein,Measurement,LOINC
+HBA1C,LOINC,HbA1c,3004410,Hemoglobin A1c,Measurement,LOINC
+TROP,LOINC,Troponin I,3025232,Troponin I,Measurement,LOINC
+TSH,LOINC,TSH,3016502,TSH,Measurement,LOINC
+CHOL,LOINC,Total Cholesterol,3027114,Cholesterol,Measurement,LOINC
+BNP,LOINC,BNP,3022217,BNP,Measurement,LOINC
+GLU,LOINC,Random Glucose,3004501,Glucose,Measurement,LOINC
+INR,LOINC,INR,3010156,INR,Measurement,LOINC
+DDIMER,LOINC,D-Dimer,3052648,D-Dimer,Measurement,LOINC
