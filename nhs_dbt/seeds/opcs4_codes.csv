@@ -1,0 +1,16 @@
+code,description,category
+W37.1,Primary total prosthetic replacement of hip joint using cement,Hip replacement
+W38.1,Primary total prosthetic replacement of hip joint not using cement,Hip replacement
+W40.1,Primary total prosthetic replacement of knee joint using cement,Knee replacement
+K22.2,Laparoscopic cholecystectomy,Gallbladder
+G45.1,Fibreoptic examination of upper gastrointestinal tract,Endoscopy
+H22.9,Colonoscopy unspecified,Endoscopy
+K63.1,Percutaneous transluminal angioplasty of coronary artery,Cardiac
+K49.1,Coronary artery bypass graft,Cardiac
+E85.1,Insertion of prosthesis of lens,Ophthalmology
+T46.2,Percutaneous insertion of central venous catheter,Vascular access
+U05.1,Delivery by emergency caesarean section,Obstetric
+Y53.1,Approach to organ under general anaesthetic,Anaesthetic
+X29.2,Computed tomography of chest,Imaging
+U21.2,Induction of labour,Obstetric
+B27.5,CT scan of head,Imaging

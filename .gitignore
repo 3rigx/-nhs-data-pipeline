@@ -67,3 +67,4 @@ htmlcov/
 models/
 *.model
 *.pkl
+*.env

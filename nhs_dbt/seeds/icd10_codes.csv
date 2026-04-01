@@ -1,0 +1,37 @@
+code,description,chapter,category
+A00,Cholera,I,Certain infectious and parasitic diseases
+A09,Infectious gastroenteritis and colitis unspecified,I,Certain infectious and parasitic diseases
+B34.9,Viral infection unspecified,I,Certain infectious and parasitic diseases
+C34.1,Malignant neoplasm of upper lobe bronchus or lung,II,Neoplasms
+C34.9,Malignant neoplasm of bronchus or lung unspecified,II,Neoplasms
+C50.9,Malignant neoplasm of breast unspecified,II,Neoplasms
+C61,Malignant neoplasm of prostate,II,Neoplasms
+D64.9,Anaemia unspecified,III,Diseases of the blood
+E11.9,Type 2 diabetes mellitus without complications,IV,Endocrine nutritional and metabolic diseases
+E11.7,Type 2 diabetes mellitus with multiple complications,IV,Endocrine nutritional and metabolic diseases
+E78.0,Pure hypercholesterolaemia,IV,Endocrine nutritional and metabolic diseases
+F32.1,Moderate depressive episode,V,Mental and behavioural disorders
+F41.1,Generalised anxiety disorder,V,Mental and behavioural disorders
+G30.9,Alzheimers disease unspecified,VI,Diseases of the nervous system
+I10,Essential primary hypertension,IX,Diseases of the circulatory system
+I21.9,Acute myocardial infarction unspecified,IX,Diseases of the circulatory system
+I25.1,Atherosclerotic heart disease,IX,Diseases of the circulatory system
+I48.9,Atrial fibrillation unspecified,IX,Diseases of the circulatory system
+I50.0,Congestive heart failure,IX,Diseases of the circulatory system
+I63.9,Cerebral infarction unspecified,IX,Diseases of the circulatory system
+I64,Stroke not specified as haemorrhage or infarction,IX,Diseases of the circulatory system
+J18.1,Lobar pneumonia unspecified,X,Diseases of the respiratory system
+J44.1,COPD with acute exacerbation,X,Diseases of the respiratory system
+J45.9,Asthma unspecified,X,Diseases of the respiratory system
+J96.0,Acute respiratory failure,X,Diseases of the respiratory system
+K21.0,Gastro-oesophageal reflux disease with oesophagitis,XI,Diseases of the digestive system
+K80.2,Calculus of gallbladder without cholecystitis,XI,Diseases of the digestive system
+L03.1,Cellulitis of other parts of limb,XII,Diseases of the skin
+M17.1,Other primary gonarthrosis,XIII,Diseases of the musculoskeletal system
+M54.5,Low back pain,XIII,Diseases of the musculoskeletal system
+N18.3,Chronic kidney disease stage 3,XIV,Diseases of the genitourinary system
+N39.0,Urinary tract infection site not specified,XIV,Diseases of the genitourinary system
+R07.9,Chest pain unspecified,XVIII,Symptoms signs and abnormal findings
+R10.4,Other and unspecified abdominal pain,XVIII,Symptoms signs and abnormal findings
+S72.0,Fracture of neck of femur,XIX,Injury poisoning
+Z51.1,Pharmacotherapy session for neoplasm,XXI,Factors influencing health status

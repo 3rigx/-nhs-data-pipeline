@@ -1,0 +1,26 @@
+concept_id,term,semantic_tag,icd10_map
+73211009,Diabetes mellitus,disorder,E11.9
+38341003,Hypertensive disorder,disorder,I10
+84114007,Heart failure,disorder,I50.0
+22298006,Myocardial infarction,disorder,I21.9
+195967001,Asthma,disorder,J45.9
+13645005,Chronic obstructive lung disease,disorder,J44.1
+49436004,Atrial fibrillation,disorder,I48.9
+230690007,Cerebrovascular accident,disorder,I64
+363406005,Malignant tumor of colon,disorder,C18.9
+254837009,Malignant neoplasm of breast,disorder,C50.9
+68496003,Polyarthritis,disorder,M13.0
+90708001,Kidney disease,disorder,N18.3
+35489007,Depressive disorder,disorder,F32.1
+197480006,Anxiety disorder,disorder,F41.1
+233604007,Pneumonia,disorder,J18.1
+68566005,Urinary tract infection,disorder,N39.0
+267036007,Dyspnoea,finding,R06.0
+29857009,Chest pain,finding,R07.9
+21522001,Abdominal pain,finding,R10.4
+386661006,Fever,finding,R50.9
+44054006,Type 2 diabetes mellitus,disorder,E11.9
+399211009,History of myocardial infarction,situation,I25.2
+275272006,Brain CT scan normal,finding,
+162673000,General examination of patient,procedure,Z00.0
+182813001,Emergency treatment,procedure,
