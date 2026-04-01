@@ -1,0 +1,52 @@
+name: "nhs_data_pipeline"
+version: "0.1.0"
+config-version: 2
+
+profile: "nhs_data_pipeline"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  nhs_data_pipeline:
+    staging:
+      +materialized: view
+      +schema: staging
+      +tags: ["staging"]
+
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+      +tags: ["intermediate"]
+
+    marts:
+      +materialized: table
+      +schema: marts
+      +tags: ["marts"]
+
+      omop:
+        +materialized: table
+        +schema: omop
+        +tags: ["omop"]
+
+      cohorts:
+        +materialized: table
+        +schema: cohorts
+        +tags: ["cohorts"]
+
+      nlp:
+        +materialized: table
+        +schema: nlp
+        +tags: ["nlp"]
+
+seeds:
+  nhs_data_pipeline:
+    +schema: raw

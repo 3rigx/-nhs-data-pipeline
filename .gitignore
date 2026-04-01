@@ -1,0 +1,69 @@
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# --- DuckDB ---
+*.duckdb
+*.duckdb.wal
+data/duckdb/
+
+# --- dbt ---
+nhs_dbt/target/
+nhs_dbt/dbt_packages/
+nhs_dbt/logs/
+
+# --- Environment & Secrets ---
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+
+# --- Snowflake ---
+snowflake_credentials.json
+
+# --- IDE ---
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Data (large files) ---
+data/raw/*.csv
+data/raw/*.json
+data/raw/*.parquet
+!data/raw/.gitkeep
+!data/seeds/.gitkeep
+
+# --- Docker ---
+docker/volumes/
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Coverage ---
+htmlcov/
+.coverage
+.pytest_cache/
+
+# --- NLP Models (large) ---
+models/
+*.model
+*.pkl
