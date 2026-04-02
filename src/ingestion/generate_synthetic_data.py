@@ -7,6 +7,15 @@ Mirrors SUS/HES, primary care, and clinical notes formats.
 DISCLAIMER: All data is synthetic. No real patient data is used.
 """
 
+
+import sys
+import io
+
+# Fix Windows encoding
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+
+
 import csv
 import os
 import random
