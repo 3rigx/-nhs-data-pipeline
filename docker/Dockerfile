@@ -1,4 +1,4 @@
-FROM python:3.11-slim AS base
+FROM python:3.14-slim AS base
 
 LABEL org.opencontainers.image.title="NHS Data Pipeline"
 LABEL org.opencontainers.image.description="End-to-end NHS ELT pipeline: dbt, DuckDB, OMOP CDM, Clinical NLP"
