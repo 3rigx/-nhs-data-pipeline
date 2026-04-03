@@ -2,7 +2,7 @@
 # Spin everything up with: docker compose up
 # The API will be at http://localhost:8000
 # Prefect UI will be at http://localhost:4200
-# dbt docs will be at http://localhost:8080
+# dbt docs will be at http://localhost:8081
 
 name: nhs-data-pipeline
 

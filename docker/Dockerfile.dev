@@ -28,7 +28,7 @@ ENV PATH="/app/.venv/bin:$PATH" \
     DUCKDB_PATH=/data/nhs_pipeline.duckdb \
     ENVIRONMENT=development
 
-EXPOSE 8000 4200 8080
+EXPOSE 8000 4200 8081
 
 # Hot-reload for local development
 CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
