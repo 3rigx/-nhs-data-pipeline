@@ -1,0 +1,48 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only rebuild docs when something relevant actually changed
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-docs:
+    name: Build and deploy MkDocs site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Fetch full history so MkDocs can show git revision dates
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: docs-${{ runner.os }}-pip-${{ hashFiles('mkdocs.yml') }}
+
+      - name: Install MkDocs and plugins
+        run: |
+          pip install mkdocs-material mkdocs-minify-plugin
+
+      - name: Build docs (strict mode catches broken links)
+        run: mkdocs build --strict
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force --clean
