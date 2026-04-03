@@ -1,0 +1,55 @@
+# Keep the image lean — none of this belongs inside a container
+
+# Python noise
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# dbt artifacts — generated at runtime, not baked into the image
+nhs_dbt/target/
+nhs_dbt/dbt_packages/
+nhs_dbt/logs/
+
+# Data files — these live in Docker volumes, not the image
+data/
+*.duckdb
+*.parquet
+*.csv
+
+# Environment and secrets — never bake these in
+.env
+*.env.*
+!.env.example
+
+# Git
+.git/
+.gitignore
+
+# Docs and tooling
+docs/
+*.md
+!README.md
+.github/
+Makefile
+
+# IDE config
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,116 @@
+# NHS Data Pipeline — Local Development Stack
+# Spin everything up with: docker compose up
+# The API will be at http://localhost:8000
+# Prefect UI will be at http://localhost:4200
+# dbt docs will be at http://localhost:8080
+
+name: nhs-data-pipeline
+
+services:
+
+  # ─── Main ELT pipeline ──────────────────────────────────────────────────────
+  pipeline:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: nhs-pipeline:local
+    container_name: nhs-pipeline
+    environment:
+      - DUCKDB_PATH=/data/nhs_pipeline.duckdb
+      - ENVIRONMENT=development
+      - PREFECT_API_URL=http://prefect:4200/api
+    env_file:
+      - ../.env
+    volumes:
+      # Persist the DuckDB file between restarts
+      - pipeline-data:/data
+      # Live-mount your source code so you don't need to rebuild on every change
+      - ../src:/app/src
+      - ../nhs_dbt:/app/nhs_dbt
+    depends_on:
+      prefect:
+        condition: service_healthy
+    networks:
+      - nhs-net
+    restart: unless-stopped
+
+  # ─── FastAPI FHIR endpoint ──────────────────────────────────────────────────
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    image: nhs-api:local
+    container_name: nhs-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DUCKDB_PATH=/data/nhs_pipeline.duckdb
+      - ENVIRONMENT=development
+    env_file:
+      - ../.env
+    volumes:
+      - pipeline-data:/data
+      - ../src:/app/src
+    depends_on:
+      - pipeline
+    networks:
+      - nhs-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # ─── Prefect orchestration server ───────────────────────────────────────────
+  prefect:
+    image: prefecthq/prefect:3-latest
+    container_name: nhs-prefect
+    ports:
+      - "4200:4200"
+    environment:
+      - PREFECT_SERVER_API_HOST=0.0.0.0
+      - PREFECT_API_DATABASE_CONNECTION_URL=sqlite+aiosqlite:////data/prefect.db
+    volumes:
+      - prefect-data:/data
+    networks:
+      - nhs-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4200/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    command: prefect server start --host 0.0.0.0
+
+  # ─── dbt docs server ────────────────────────────────────────────────────────
+  # Browse your full dbt model lineage at http://localhost:8080
+  dbt-docs:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    container_name: nhs-dbt-docs
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../nhs_dbt:/app/nhs_dbt
+      - pipeline-data:/data
+    networks:
+      - nhs-net
+    working_dir: /app/nhs_dbt
+    command: >
+      sh -c "dbt docs generate --profiles-dir /app/nhs_dbt &&
+             dbt docs serve --port 8080 --no-browser"
+    restart: unless-stopped
+
+volumes:
+  pipeline-data:
+    driver: local
+  prefect-data:
+    driver: local
+
+networks:
+  nhs-net:
+    driver: bridge

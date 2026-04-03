@@ -1,0 +1,34 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    POETRY_VERSION=1.8.3 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PATH="/opt/poetry/bin:$PATH"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl build-essential git make vim \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock* ./
+
+# Dev installs everything — linters, test tools, the lot
+RUN poetry install --no-root
+
+RUN poetry run python -m spacy download en_core_web_sm
+
+ENV PATH="/app/.venv/bin:$PATH" \
+    DBT_PROFILES_DIR=/app/nhs_dbt \
+    DUCKDB_PATH=/data/nhs_pipeline.duckdb \
+    ENVIRONMENT=development
+
+EXPOSE 8000 4200 8080
+
+# Hot-reload for local development
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

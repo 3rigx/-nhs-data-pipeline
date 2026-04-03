@@ -1,0 +1,51 @@
+FROM python:3.11-slim AS base
+
+LABEL org.opencontainers.image.title="NHS Data Pipeline — FHIR API"
+LABEL org.opencontainers.image.description="FastAPI FHIR R4 endpoint for the NHS Data Pipeline"
+LABEL org.opencontainers.image.source="https://github.com/3rigx/-nhs-data-pipeline"
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    POETRY_VERSION=1.8.3 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PATH="/opt/poetry/bin:$PATH"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock* ./
+
+FROM base AS builder
+
+# API only needs a subset of dependencies — skip heavy NLP/dbt packages
+RUN poetry install --no-root --only main --extras api 2>/dev/null || \
+    poetry install --no-root --only main
+
+FROM base AS final
+
+RUN groupadd --gid 1001 apiuser && \
+    useradd --uid 1001 --gid apiuser --shell /bin/bash --create-home apiuser
+
+COPY --from=builder /app/.venv /app/.venv
+COPY --chown=apiuser:apiuser src/ ./src/
+COPY --chown=apiuser:apiuser .env.example ./.env.example
+
+ENV PATH="/app/.venv/bin:$PATH" \
+    DUCKDB_PATH=/data/nhs_pipeline.duckdb \
+    ENVIRONMENT=production
+
+RUN mkdir -p /data && chown apiuser:apiuser /data
+
+USER apiuser
+
+EXPOSE 8000
+
+# Uvicorn in production mode — 2 workers per CPU is a safe default
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]

@@ -1,0 +1,62 @@
+# Production overrides — use with:
+# docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# This file tightens things up for a real deployment:
+# no dev mounts, resource limits, proper restart policies,
+# and images pulled from GHCR rather than built locally.
+
+services:
+
+  pipeline:
+    image: ghcr.io/3rigx/-nhs-data-pipeline:latest
+    # No source code mounts in prod — code is baked into the image
+    volumes:
+      - pipeline-data:/data
+    environment:
+      - ENVIRONMENT=production
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+        reservations:
+          memory: 512M
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  api:
+    image: ghcr.io/3rigx/-nhs-data-pipeline/api:latest
+    volumes:
+      - pipeline-data:/data
+    environment:
+      - ENVIRONMENT=production
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+        reservations:
+          memory: 256M
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+  prefect:
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+    restart: always
+
+  # dbt-docs is not needed in production — remove it from the stack
+  dbt-docs:
+    profiles:
+      - debug-only
