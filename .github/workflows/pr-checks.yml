@@ -1,0 +1,100 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+jobs:
+  title-check:
+    name: 📝 PR Title Convention
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title follows Conventional Commits
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            test
+            chore
+            ci
+            perf
+          requireScope: false
+
+  size-check:
+    name: 📏 PR Size Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR size
+        run: |
+          CHANGED=$(git diff --stat origin/main...HEAD | tail -1)
+          echo "Changed: $CHANGED"
+          LINES=$(git diff origin/main...HEAD --unified=0 | grep '^[+-]' | grep -v '^[+-][+-][+-]' | wc -l)
+          echo "Lines changed: $LINES"
+          if [ "$LINES" -gt 2000 ]; then
+            echo "⚠️ Large PR detected ($LINES lines). Consider splitting into smaller PRs."
+          else
+            echo "✅ PR size is acceptable ($LINES lines)."
+          fi
+
+  security-scan:
+    name: 🔒 Security Scan (Bandit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Bandit
+        run: pip install bandit[toml]
+
+      - name: Run Bandit security scan
+        run: |
+          bandit -r src/ \
+            -ll \
+            --exclude src/tests \
+            -f json \
+            -o bandit-report.json || true
+          bandit -r src/ -ll --exclude src/tests
+
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-security-report
+          path: bandit-report.json
+          retention-days: 14
+
+  dependency-audit:
+    name: 🔍 Dependency Audit (pip-audit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Run pip-audit
+        run: pip-audit --requirement <(pip install poetry && poetry export -f requirements.txt --without-hashes 2>/dev/null) || echo "Audit complete with warnings."
+        continue-on-error: true
