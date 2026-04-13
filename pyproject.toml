@@ -13,7 +13,7 @@ packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 duckdb = "^1.5.1"
-dbt-core = "^1.11.7"
+dbt-core = "^1.11.8"
 dbt-duckdb = "^1.10.1"
 snowflake-connector-python = "^4.4.0"
 pandas = "^3.0.2"
