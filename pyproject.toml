@@ -23,7 +23,7 @@ pydantic = "^2.12.5"
 fastapi = "^0.135.2"
 uvicorn = "^0.42.0"
 python-dotenv = "^1.2.2"
-prefect = "^3.6.24"
+prefect = "^3.6.26"
 spacy = "^3.8.14"
 
 [tool.poetry.group.dev.dependencies]
